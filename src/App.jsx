@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import AddUser from './components/AddUser';
 import NavBar from './components/NavBar';
 import About from './components/About';
+import LoginUser from './components/LoginUser';
 
 class App extends Component{
     constructor(){
@@ -47,6 +48,13 @@ class App extends Component{
         obj[event.target.name] = event.target.value;
         this.setState(obj);
     }
+    login(event){
+        event.preventDefault();
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        }
+    }
     render(){
         return(
             <div className="container">
@@ -69,6 +77,13 @@ class App extends Component{
                             
                         )}/>
                         <Route exact path='/about' component={About}/>
+                        <Route exact path='/login' render={() => (
+                            <LoginUser 
+                                login={this.login.bind(this)}
+                                username={this.state.username}
+                                password={this.state.password}
+                            />
+                        )}/>
                         
                     </Switch>
                 </div>
