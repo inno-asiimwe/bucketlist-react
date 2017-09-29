@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 const AddUser = (props) => {
+    if (props.isAuthenticated){
+        return <Redirect to='/'/>
+    }
     return(
         <div>
             <h1>User Registration</h1>

@@ -1,6 +1,10 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 const LoginUser = (props) => {
+    if(props.isAuthenticated){
+        return <Redirect to='/' />
+    }
     return(
         <div>
             <h1>Login in </h1>
@@ -16,7 +20,8 @@ const LoginUser = (props) => {
                         name="username"
                         placeholder="Username"
                         value={props.username}
-                        onChange={props.handlechange}
+                        onChange={props.handleChange}
+                        required
                     />
                 </div>
                 <div className="form-group row">
@@ -29,7 +34,8 @@ const LoginUser = (props) => {
                         name="password"
                         placeholder="Password"
                         value={props.password}
-                        onChange={props.handlechange}
+                        onChange={props.handleChange}
+                        required
                     />
                 </div>
                 <button type="submit" className="btn btn-primary pull-right">

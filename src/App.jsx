@@ -17,7 +17,8 @@ class App extends Component{
             password: '',
             cpassword: '',
             email: '',
-            title: 'Bucketlist App'
+            title: 'Bucketlist App',
+            isAuthenticated: false
         }
     }
     addUser(event){
@@ -32,14 +33,32 @@ class App extends Component{
         axios.post('http://127.0.0.1:5000/auth/register', data)
         .then((res) => {
             this.setState({
-                firstname: '',
-                lastname: '',
+                    firstname: '',
+                    lastname: '',
+                    username: '',
+                    password: '',
+                    cpassword: '',
+                    email: ''
+            });
+           console.log(res)
+        })
+        .catch((err) => {console.log(err);})
+    }
+    
+    login(event){
+        event.preventDefault();
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        axios.post('http://127.0.0.1:5000/auth/login', data)
+        .then((res) => {
+            this.setState({
                 username: '',
                 password: '',
-                cpassword: '',
-                email: ''
-            });
-           
+                isAuthenticated: true
+            })
+            window.localStorage.setItem('authToken', res.data.auth_token);
         })
         .catch((err) => {console.log(err);})
     }
@@ -47,13 +66,6 @@ class App extends Component{
         const obj = {};
         obj[event.target.name] = event.target.value;
         this.setState(obj);
-    }
-    login(event){
-        event.preventDefault();
-        const data = {
-            username: this.state.username,
-            password: this.state.password
-        }
     }
     render(){
         return(
@@ -73,6 +85,7 @@ class App extends Component{
                                     cpassword={this.state.cpassword}
                                     email={this.state.email}
                                     handleChange={this.handleChange.bind(this)}
+                                    isAuthenticated={this.state.isAuthenticated}
                                 />
                             
                         )}/>
@@ -82,6 +95,8 @@ class App extends Component{
                                 login={this.login.bind(this)}
                                 username={this.state.username}
                                 password={this.state.password}
+                                handleChange={this.handleChange.bind(this)}
+                                isAuthenticated={this.state.isAuthenticated}
                             />
                         )}/>
                         
@@ -92,4 +107,4 @@ class App extends Component{
         )
     }
 }
-export default App
+export default App;
