@@ -12,6 +12,8 @@ const AddUser = (props) => {
                     type="text" 
                     name="firstname"
                     placeholder="Enter First Name"
+                    value={props.firstname}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
@@ -24,6 +26,8 @@ const AddUser = (props) => {
                     type="text" 
                     name="lastname"
                     placeholder="Enter Last Name"
+                    value={props.lastname}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
@@ -36,6 +40,8 @@ const AddUser = (props) => {
                     type="text" 
                     name="username"
                     placeholder="Username"
+                    value={props.username}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
@@ -45,9 +51,11 @@ const AddUser = (props) => {
                 </label>
                 <input 
                     className="form-control" 
-                    type="text" 
+                    type="password" 
                     name="password"
                     placeholder="Password"
+                    value={props.password}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
@@ -57,9 +65,11 @@ const AddUser = (props) => {
                 </label>
                 <input 
                     className="form-control" 
-                    type="text" 
+                    type="password" 
                     name="cpassword"
                     placeholder="Confirm Password"
+                    value={props.cpassword}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
@@ -72,6 +82,8 @@ const AddUser = (props) => {
                     type="text" 
                     name="email"
                     placeholder="Email Address"
+                    value={props.email}
+                    onChange={props.handleChange}
                     required
                 />
             </div>
